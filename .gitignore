@@ -1,0 +1,12 @@
+# Environments
+ser_env/
+__pycache__/
+
+# Mac specific files
+.DS_Store
+
+# Large datasets and models (Host these on Google Drive instead)
+dataset/
+*.h5
+*.pkl
+*.wav
