@@ -5,8 +5,6 @@ __pycache__/
 # Mac specific files
 .DS_Store
 
-# Large datasets and models (Host these on Google Drive instead)
+# Large datasets (Host these on Google Drive instead)
 dataset/
-*.h5
-*.pkl
 *.wav
