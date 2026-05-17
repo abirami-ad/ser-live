@@ -8,14 +8,14 @@ import pandas as pd
 import joblib
 import os
 
-# --- PAGE CONFIG ---
+#PAGE CONFIG 
 st.set_page_config(page_title="SER Research Dashboard", layout="wide")
 
-# --- PARAMETERS ---
+#PARAMETERS 
 SAMPLE_RATE = 22050
 DURATION = 3.0
 
-# --- SIDEBAR: MODEL ROUTER ---
+# SIDEBAR: MODEL ROUTER 
 st.sidebar.title("🤖 Model Router")
 selected_model = st.sidebar.selectbox(
     "Choose Active Brain:",
@@ -23,7 +23,7 @@ selected_model = st.sidebar.selectbox(
 )
 st.sidebar.info(f"Currently routing to: {selected_model}")
 
-# --- FUNCTION: RECORD AUDIO ---
+#  FUNCTION: RECORD AUDIO 
 def record_audio(duration, fs):
     recording = sd.rec(int(duration * fs), samplerate=fs, channels=1, dtype='float32')
     progress = st.progress(0)
@@ -33,13 +33,13 @@ def record_audio(duration, fs):
     sd.wait()
     return np.squeeze(recording)
 
-# --- MAIN UI ---
+#  MAIN UI 
 st.title("🎙️ Speech Emotion Recognition Research Suite")
 tab_inference, tab_analysis, tab_map = st.tabs(["🎯 Prediction", "📊 Acoustic Analysis", "🗺️ Data Map"])
 
 audio_data = None
 
-# --- TAB 1: INFERENCE ---
+#  TAB 1: INFERENCE 
 with tab_inference:
     col_input, col_output = st.columns([1, 1])
     
@@ -64,7 +64,7 @@ with tab_inference:
         else:
             st.write("Awaiting audio input...")
 
-# --- TAB 2: ANALYSIS (VIOLIN PLOTS) ---
+#  TAB 2: ANALYSIS (VIOLIN PLOTS) 
 with tab_analysis:
     st.header("Acoustic Fingerprint (Violin Plots)")
     if audio_data is not None:
@@ -85,7 +85,7 @@ with tab_analysis:
     else:
         st.info("Record audio to see how your pitch compares to the dataset.")
 
-# --- TAB 3: DATA MAP (t-SNE) ---
+# TAB 3: DATA MAP (t-SNE)
 with tab_map:
     st.header("Dimensionality Reduction (t-SNE)")
     st.write("This map shows where your voice sits relative to the 1,440 RAVDESS samples.")
